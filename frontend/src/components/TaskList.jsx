@@ -35,9 +35,9 @@ function TaskList({ tasks, onUpdateStatus, onDelete }) {
             <button onClick={() => onDelete(task._id)} aria-label={`Delete ${task.title}`}>
               Delete
             </button>
-            {/* <button onClick={() => onDelete(task._id)} aria-label={`Delete ${task.title}`}>
+            <button onClick={() => onUpdateStatus(task._id, task.status)} aria-label={`Update ${task.title}`}>
               Update
-            </button> */}
+            </button>
           </div>
         </li>
       ))}
