@@ -1,0 +1,93 @@
+name: TaskFlow CI/CD Pipeline
+
+# This workflow runs automatically on every push and every pull request.
+# It installs dependencies, runs backend + frontend tests, builds the
+# frontend, and only "deploys" if every previous step succeeded.
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    name: Backend - Install & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm install
+
+      - name: Run backend automated tests
+        working-directory: backend
+        run: npm test
+        env:
+          JWT_SECRET: ci_test_secret
+
+  frontend-tests:
+    name: Frontend - Install, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install
+
+      - name: Run frontend automated tests
+        working-directory: frontend
+        run: npm test
+        env:
+          CI: true
+
+      - name: Build frontend for production
+        working-directory: frontend
+        run: npm run build
+
+      - name: Upload production build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-build
+          path: frontend/build
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    # Deployment only runs after BOTH test jobs succeed, and only on pushes
+    # to main (not on pull requests) - this is the CI/CD "gatekeeper" step.
+    needs: [backend-tests, frontend-tests]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download production build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-build
+          path: build
+
+      - name: Deploy step (placeholder)
+        run: |
+          echo "✅ All tests passed and the frontend build succeeded."
+          echo "🚀 Deploying TaskFlow..."
+          echo "Replace this step with your real deployment command"
+          echo "(e.g. deploy to Vercel, Netlify, Render, or a cloud VM)."
