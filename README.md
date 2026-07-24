@@ -1,4 +1,4 @@
-# TaskFlow - CI/CD Testing Demo Application 
+# TaskFlow - CI/CD Testing Demo Application
 
 > A hands-on task management application built to demonstrate the complete software testing lifecycle — from Alpha Testing and Beta Testing to fully automated Continuous Integration and Continuous Deployment (CI/CD) using GitHub Actions.
 
