@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuite name="taskflow-selenium" tests="5" failures="0" errors="0" skipped="0" time="10.822">
+  <testcase classname="selenium-tests.test_taskflow" name="test_TC01_add_new_todo" time="3.988">
+    <system-out>[TESTDATA] TC01 title=&#x27;TC01 Buy milk eac30f52&#x27;</system-out>
+  </testcase>
+  <testcase classname="selenium-tests.test_taskflow" name="test_TC02_mark_todo_completed" time="1.392">
+    <system-out>[TESTDATA] TC02 target=&#x27;Selenium todo 9ca0de7b&#x27; new_status=done</system-out>
+  </testcase>
+  <testcase classname="selenium-tests.test_taskflow" name="test_TC03_edit_existing_todo" time="1.119">
+    <system-out>[TESTDATA] TC03 old=&#x27;Selenium todo 407a2523&#x27; new=&#x27;Selenium todo 407a2523 [edited]&#x27;</system-out>
+  </testcase>
+  <testcase classname="selenium-tests.test_taskflow" name="test_TC04_delete_todo" time="0.965">
+    <system-out>[TESTDATA] TC04 target=&#x27;Selenium todo 8593d919&#x27;</system-out>
+  </testcase>
+  <testcase classname="selenium-tests.test_taskflow" name="test_TC05_empty_todo_rejected" time="3.358">
+    <system-out>[TESTDATA] TC05 title=&lt;empty&gt; description=&lt;empty&gt;</system-out>
+  </testcase>
+</testsuite>

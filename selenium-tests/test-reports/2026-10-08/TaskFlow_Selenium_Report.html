@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TaskFlow Selenium Test Report</title>
+<style>body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;margin:2rem;color:#1e1e2f;background:#f5f6fa}h1,h2{color:#312e81}.meta{background:#fff;border-radius:8px;padding:1rem 1.5rem;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}.meta p{margin:.3rem 0}.summary{display:flex;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap}.card{background:#fff;border-radius:8px;padding:.8rem 1.4rem;box-shadow:0 1px 4px rgba(0,0,0,.08);min-width:110px;text-align:center}.card .num{font-size:1.8rem;font-weight:bold}.green{color:#16a34a}.red{color:#dc2626}table.case{width:100%;border-collapse:collapse;background:#fff;margin-bottom:2rem;box-shadow:0 1px 4px rgba(0,0,0,.08)}table.case th,table.case td{border:1px solid #ddd;padding:.5rem .8rem;text-align:left;vertical-align:top}table.case th{background:#eef2ff;width:180px}.pass{background:#dcfce7;color:#166534;font-weight:bold;padding:.1rem .6rem;border-radius:4px}.fail{background:#fee2e2;color:#991b1b;font-weight:bold;padding:.1rem .6rem;border-radius:4px}code{background:#f1f5f9;padding:.1rem .35rem;border-radius:4px;font-size:.9em}ol{margin:.2rem 0;padding-left:1.2rem}footer{color:#666;font-size:.85rem;margin-top:2rem}</style>
+</head>
+<body>
+<h1>TaskFlow — Selenium Test Report</h1>
+<div class="meta">
+  <p><strong>Generated:</strong> 2026-10-08 12:44</p>
+  <p><strong>Suite:</strong> <code>selenium-tests/test_taskflow.py</code></p>
+  <p><strong>Command:</strong> <code>python -m pytest selenium-tests/test_taskflow.py</code></p>
+  <p><strong>Environment:</strong> Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</p>
+  <p><strong>Result: ALL TESTS PASSED ✔</strong></p>
+</div>
+<div class="summary">
+  <div class="card"><div class="num">5</div><div>Total</div></div>
+  <div class="card"><div class="num green">5</div><div>Passed</div></div>
+  <div class="card"><div class="num red">0</div><div>Failed</div></div>
+  <div class="card"><div class="num">0</div><div>Blocked</div></div>
+  <div class="card"><div class="num">10.82 s</div><div>Duration</div></div>
+</div>
+<h2>TC01 — Verify a new todo can be added and is stored in MongoDB</h2>
+<table class="case">
+  <tr><th>Test Case ID</th><td>TC01</td></tr>
+  <tr><th>Module</th><td>Tasks — Create</td></tr>
+  <tr><th>Test Scenario</th><td>Verify a new todo can be added and is stored in MongoDB</td></tr>
+  <tr><th>Preconditions</th><td>User is registered and logged in; task form is visible</td></tr>
+  <tr><th>Test Data</th><td><code>TC01 title=&#x27;TC01 Buy milk eac30f52&#x27;</code></td></tr>
+  <tr><th>Test Steps</th><td><ol><li>Enter the todo in the Task title input field</li><li>Click <strong>Add Task</strong></li></ol></td></tr>
+  <tr><th>Expected Result</th><td>The new todo appears in the list and is stored in MongoDB</td></tr>
+  <tr><th>Actual Result</th><td>The new todo appears in the list and is stored in MongoDB — observed in this run (3.99 s).</td></tr>
+  <tr><th>Status</th><td><span class="pass">Pass</span></td></tr>
+  <tr><th>Severity</th><td>High</td></tr>
+  <tr><th>Priority</th><td>P1</td></tr>
+  <tr><th>Environment</th><td>Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</td></tr>
+  <tr><th>Comments</th><td>UI + database assertions both checked.</td></tr>
+</table><h2>TC02 — Verify a todo can be marked as completed and the status is saved</h2>
+<table class="case">
+  <tr><th>Test Case ID</th><td>TC02</td></tr>
+  <tr><th>Module</th><td>Tasks — Status update</td></tr>
+  <tr><th>Test Scenario</th><td>Verify a todo can be marked as completed and the status is saved</td></tr>
+  <tr><th>Preconditions</th><td>Logged in; a todo exists in the list</td></tr>
+  <tr><th>Test Data</th><td><code>TC02 target=&#x27;Selenium todo 9ca0de7b&#x27; new_status=done</code></td></tr>
+  <tr><th>Test Steps</th><td><ol><li>Locate the existing todo</li><li>Set its status dropdown (“Change status for…”) to <strong>Done</strong></li></ol></td></tr>
+  <tr><th>Expected Result</th><td>The todo is marked completed (done styling) and the updated status is saved in MongoDB</td></tr>
+  <tr><th>Actual Result</th><td>The todo is marked completed (done styling) and the updated status is saved in MongoDB — observed in this run (1.39 s).</td></tr>
+  <tr><th>Status</th><td><span class="pass">Pass</span></td></tr>
+  <tr><th>Severity</th><td>High</td></tr>
+  <tr><th>Priority</th><td>P1</td></tr>
+  <tr><th>Environment</th><td>Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</td></tr>
+  <tr><th>Comments</th><td>Spec mentions a checkbox; the app uses a status dropdown instead — test adapted to the real UI.</td></tr>
+</table><h2>TC03 — Verify todo text can be changed and the update persists</h2>
+<table class="case">
+  <tr><th>Test Case ID</th><td>TC03</td></tr>
+  <tr><th>Module</th><td>Tasks — Edit</td></tr>
+  <tr><th>Test Scenario</th><td>Verify todo text can be changed and the update persists</td></tr>
+  <tr><th>Preconditions</th><td>Logged in; a todo exists in the list</td></tr>
+  <tr><th>Test Data</th><td><code>TC03 old=&#x27;Selenium todo 407a2523&#x27; new=&#x27;Selenium todo 407a2523 [edited]&#x27;</code></td></tr>
+  <tr><th>Test Steps</th><td><ol><li>Send the updated title through <code>PUT /api/tasks/:id</code></li><li>Refresh the page</li><li>Verify the updated text is displayed and present in <code>GET /api/tasks</code></li></ol></td></tr>
+  <tr><th>Expected Result</th><td>The updated todo text is displayed and persisted in the database</td></tr>
+  <tr><th>Actual Result</th><td>The updated todo text is displayed and persisted in the database — observed in this run (1.12 s).</td></tr>
+  <tr><th>Status</th><td><span class="pass">Pass</span></td></tr>
+  <tr><th>Severity</th><td>Medium</td></tr>
+  <tr><th>Priority</th><td>P2</td></tr>
+  <tr><th>Environment</th><td>Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</td></tr>
+  <tr><th>Comments</th><td>TaskList.jsx has no working edit-text UI (its “Update” button calls an undefined <code>onUpdate</code>), so the edit goes through the API. Convert to UI clicks once an inline Edit/Save UI exists.</td></tr>
+</table><h2>TC04 — Verify a todo can be deleted from the UI and the database</h2>
+<table class="case">
+  <tr><th>Test Case ID</th><td>TC04</td></tr>
+  <tr><th>Module</th><td>Tasks — Delete</td></tr>
+  <tr><th>Test Scenario</th><td>Verify a todo can be deleted from the UI and the database</td></tr>
+  <tr><th>Preconditions</th><td>Logged in; a todo exists in the list</td></tr>
+  <tr><th>Test Data</th><td><code>TC04 target=&#x27;Selenium todo 8593d919&#x27;</code></td></tr>
+  <tr><th>Test Steps</th><td><ol><li>Locate the existing todo</li><li>Click <strong>Delete</strong> (aria-label “Delete …”)</li><li>Confirm if prompted (no confirmation dialog in this app)</li></ol></td></tr>
+  <tr><th>Expected Result</th><td>The todo disappears from the UI and is removed from MongoDB</td></tr>
+  <tr><th>Actual Result</th><td>The todo disappears from the UI and is removed from MongoDB — observed in this run (0.97 s).</td></tr>
+  <tr><th>Status</th><td><span class="pass">Pass</span></td></tr>
+  <tr><th>Severity</th><td>High</td></tr>
+  <tr><th>Priority</th><td>P1</td></tr>
+  <tr><th>Environment</th><td>Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</td></tr>
+  <tr><th>Comments</th><td>No confirmation prompt exists. Minor UI note: the delete button text reads “Deletes”.</td></tr>
+</table><h2>TC05 — Verify an empty todo cannot be submitted</h2>
+<table class="case">
+  <tr><th>Test Case ID</th><td>TC05</td></tr>
+  <tr><th>Module</th><td>Tasks — Input validation</td></tr>
+  <tr><th>Test Scenario</th><td>Verify an empty todo cannot be submitted</td></tr>
+  <tr><th>Preconditions</th><td>Logged in; task form is visible; task count recorded before the attempt</td></tr>
+  <tr><th>Test Data</th><td><code>TC05 title=&lt;empty&gt; description=&lt;empty&gt;</code></td></tr>
+  <tr><th>Test Steps</th><td><ol><li>Leave the todo input empty</li><li>Click <strong>Add Task</strong></li></ol></td></tr>
+  <tr><th>Expected Result</th><td>No empty todo is created; an appropriate validation message is shown</td></tr>
+  <tr><th>Actual Result</th><td>No empty todo is created; an appropriate validation message is shown — observed in this run (3.36 s).</td></tr>
+  <tr><th>Status</th><td><span class="pass">Pass</span></td></tr>
+  <tr><th>Severity</th><td>Medium</td></tr>
+  <tr><th>Priority</th><td>P2</td></tr>
+  <tr><th>Environment</th><td>Local QA – Headless Chrome (Windows) · Frontend :3000 · Backend :5000 · MongoDB local</td></tr>
+  <tr><th>Comments</th><td>Validation is enforced by the HTML <code>required</code> attribute plus a <code>title.trim()</code> guard — no custom error banner is rendered.</td></tr>
+</table>
+<footer>Machine-readable results: <code>test-results.xml</code> (same folder) · Auto-generated by <code>selenium-tests/conftest.py</code> after the test session.</footer>
+</body>
+</html>
